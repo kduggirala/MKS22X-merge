@@ -1,13 +1,19 @@
-
 public class Merge {
+  public static void main(String[] args) {
+    int[] a = {1, 21,25,31,234, 5234, 643, 51,224,1243,234,5463,65,42,34,123};
+    mergesort(a);
+    for (int i : a) {
+      System.out.print(i + " ");
+    }
+  }
   public static void mergesort(int[] data) {
     mergesort(data, 0, data.length - 1);
   }
   private static void mergesort(int[] data, int lo, int hi) {
     if (lo < hi) {
-      int half = (lo + hi) / 2
-      mergesort(lo, half);
-      mergesort(half + 1, hi);
+      int half = (lo + hi) / 2;
+      mergesort(data, lo, half);
+      mergesort(data, half + 1, hi);
       merge(data, lo, half, hi);
     }
   }
