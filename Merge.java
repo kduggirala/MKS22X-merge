@@ -11,8 +11,8 @@ public class Merge {
       merge(data, lo, half, hi);
     }
   }
-  private static int[] merge(int[] data, int lo1, int lo2, int hi) {
-    int[] merged = new int[hi - lo];
+  private static void merge(int[] data, int lo1, int lo2, int hi) {
+    int[] merged = new int[hi - lo1 + 1];
 
     int i1 = lo1;
     int i2 = lo2 + 1;
@@ -30,8 +30,9 @@ public class Merge {
           merged[i] = data[i1++];
       }
     }
-
-    return merged;
+    for (int i = 0; i < merged.length; i++) {
+      data[lo1 + i] = merged[i];
+    }
   }
 
 }
