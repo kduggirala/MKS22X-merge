@@ -1,8 +1,14 @@
 public class Merge {
 	public static void main(String[] args) {
-		int[] a = {2,1,4,324,234,23,52,4324,534, 23,432, 54,342,24,54562345, 12, 3,123, 12,432,52, 34,234, 2,342,45 ,342,354 ,3456,332, 63,24 ,234,234, 4,52,34 ,325, 342,43 ,25, 423, 4,3 ,423,54 ,344 ,234,23};
+		int[] a = new int[1000000];
+		for (int i = 0; i < 1000000; i++) {
+			a[i] = (int)(Math.random() * 100);
+		}
 		mergesort(a);
-		for (int i : a) {
+		for (int i = 0; i < 1000000; i++) {
+			if (i % 100 == 0) {
+				System.out.println();
+			}
 			System.out.print(i + " ");
 		}
 	}
