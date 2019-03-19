@@ -1,17 +1,4 @@
 public class Merge {
-	public static void main(String[] args) {
-		int[] a = new int[1000000];
-		for (int i = 0; i < 1000000; i++) {
-			a[i] = (int)(Math.random() * 100);
-		}
-		mergesort(a);
-		for (int i = 0; i < 1000000; i++) {
-			if (i % 100 == 0) {
-				System.out.println();
-			}
-			System.out.print(i + " ");
-		}
-	}
 	public static void mergesort(int[] data) {
 		int[] temp = new int[data.length];
 		for (int i = 0; i < data.length; i++) {
@@ -21,10 +8,15 @@ public class Merge {
 	}
 	private static void mergesort(int[] data, int[] temp, int lo, int hi) {
 		if (lo < hi) {
-			int half = (lo + hi) / 2;
-			mergesort(temp, data, lo, half);
-			mergesort(temp, data, half + 1, hi);
-			merge(data, temp, lo, half, hi);
+			if (hi - lo < 7) {
+				insertionsort(data, lo, hi);
+			}
+			else {
+				int half = (lo + hi) / 2;
+				mergesort(temp, data, lo, half);
+				mergesort(temp, data, half + 1, hi);
+				merge(data, temp, lo, half, hi);
+			}
 		}
 	}
 	private static void merge(int[] data, int[] temp, int lo1, int lo2, int hi) {
@@ -42,6 +34,22 @@ public class Merge {
 					temp[i] = data[i2++];
 				else
 					temp[i] = data[i1++];
+			}
+		}
+	}
+	private static void insertionsort(int[] data, int lo, int hi) {
+		for (int i = lo + 1; i <= hi; i++) {
+			if (data[i] < data[i -1 ]) {
+				for (int j = i - 1; j >= lo; j--) {
+					if (data[j] > data[i]) {
+						int temp = data[j];
+						data[j] = data[i];
+						data[i] = temp;
+					}
+					else {
+						break;
+					}
+				}
 			}
 		}
 	}
