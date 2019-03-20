@@ -8,8 +8,8 @@ public class Merge {
 	}
 	private static void mergesort(int[] data, int[] temp, int lo, int hi) {
 		if (lo < hi) {
-			if (hi - lo < 7) {
-				insertionsort(data, lo, hi);
+			if (hi - lo < 4) {
+				insertionsort(temp, lo, hi);
 			}
 			else {
 				int half = (lo + hi) / 2;
@@ -38,19 +38,14 @@ public class Merge {
 		}
 	}
 	private static void insertionsort(int[] data, int lo, int hi) {
-		for (int i = lo + 1; i <= hi; i++) {
-			if (data[i] < data[i -1 ]) {
-				for (int j = i - 1; j >= lo; j--) {
-					if (data[j] > data[i]) {
-						int temp = data[j];
-						data[j] = data[i];
-						data[i] = temp;
-					}
-					else {
-						break;
-					}
-				}
-			}
-		}
+		int temp, j;
+		for(int i = lo + 1; i <= hi; i++) {
+	        temp = data[i];
+	        j = i - 1;
+	        while (j >= lo && data[j] > temp) {
+	            data[j + 1] = data[j--];
+	        }
+	        data[j + 1] = temp;
+	    }
 	}
 }
